@@ -11,8 +11,8 @@ import (
 func TestContext(t *testing.T) {
 	type ctxKey1 struct{}
 	type ctxKey2 struct{}
-	ctx1 := context.WithValue(context.Background(), ctxKey1{}, "https://github.com/guijiaxian/")
-	ctx2 := context.WithValue(context.Background(), ctxKey2{}, "https://camry.dev/")
+	ctx1 := context.WithValue(context.Background(), ctxKey1{}, "https://github.com/jessie-gui/")
+	ctx2 := context.WithValue(context.Background(), ctxKey2{}, "https://jessie-gui/")
 
 	ctx, cancel := Merge(ctx1, ctx2)
 	defer cancel()
@@ -22,7 +22,7 @@ func TestContext(t *testing.T) {
 	if !ok {
 		t.Errorf("expect %v, got %v", true, ok)
 	}
-	if !reflect.DeepEqual(value1, "https://github.com/camry/") {
+	if !reflect.DeepEqual(value1, "https://github.com/jessie-gui/") {
 		t.Errorf("expect %v, got %v", "https://github.com/camry/", value1)
 	}
 
@@ -31,7 +31,7 @@ func TestContext(t *testing.T) {
 	if !ok {
 		t.Errorf("expect %v, got %v", true, ok)
 	}
-	if !reflect.DeepEqual("https://camry.dev/", value2) {
+	if !reflect.DeepEqual("https://jessie-gui/", value2) {
 		t.Errorf("expect %v, got %v", "https://camry.dev/", value2)
 	}
 
@@ -44,8 +44,8 @@ func TestMerge(t *testing.T) {
 	type ctxKey2 struct{}
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
-	ctx1 := context.WithValue(context.Background(), ctxKey1{}, "https://github.com/camry/")
-	ctx2 := context.WithValue(ctx, ctxKey2{}, "https://camry.dev/")
+	ctx1 := context.WithValue(context.Background(), ctxKey1{}, "https://github.com/jessie-gui/")
+	ctx2 := context.WithValue(ctx, ctxKey2{}, "https://jessie-gui/")
 
 	ctx, cancel = Merge(ctx1, ctx2)
 	defer cancel()
@@ -55,7 +55,7 @@ func TestMerge(t *testing.T) {
 	if !ok {
 		t.Errorf("expect %v, got %v", true, ok)
 	}
-	if !reflect.DeepEqual(value1, "https://github.com/camry/") {
+	if !reflect.DeepEqual(value1, "https://github.com/jessie-gui/") {
 		t.Errorf("expect %v, got %v", "https://github.com/camry/", value1)
 	}
 
@@ -64,7 +64,7 @@ func TestMerge(t *testing.T) {
 	if !ok {
 		t.Errorf("expect %v, got %v", true, ok)
 	}
-	if !reflect.DeepEqual(value2, "https://camry.dev/") {
+	if !reflect.DeepEqual(value2, "https://jessie-gui/") {
 		t.Errorf("expect %v, got %v", " https://camry.dev/", value2)
 	}
 
