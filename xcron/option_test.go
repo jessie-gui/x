@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/camry/g/glog"
+	"x/xlog"
 )
 
 func TestWithLocation(t *testing.T) {
@@ -26,7 +26,7 @@ func TestWithParser(t *testing.T) {
 
 func TestWithVerboseLogger(t *testing.T) {
 	var buf syncWriter
-	logger := glog.NewHelper(glog.NewStdLogger(&buf))
+	logger := xlog.NewHelper(xlog.NewStdLogger(&buf))
 	c := New(WithLogger(logger))
 	if c.logger != logger {
 		t.Error("expected provided logger")

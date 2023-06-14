@@ -1,4 +1,4 @@
-module x
+module github.com/jessie-gui/x
 
 go 1.18
 

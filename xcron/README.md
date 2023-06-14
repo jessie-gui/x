@@ -4,10 +4,10 @@
 
 ```go
 // Seconds field, required
-gcron.New(gcron.WithSeconds())
+xcron.New(xcron.WithSeconds())
 
 // Seconds field, optional
-gcron.New(cron.WithParser(gcron.NewParser(
-gcron.SecondOptional | gcron.Minute | gcron.Hour | gcron.Dom | gcron.Month | gcron.Dow | gcron.Descriptor,
+xcron.New(cron.WithParser(gcron.NewParser(
+xcron.SecondOptional | xcron.Minute | xcron.Hour | xcron.Dom | xcron.Month | xcron.Dow | xcron.Descriptor,
 )))
 ```

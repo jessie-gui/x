@@ -48,7 +48,7 @@ type IUnwrap interface {
 
 const (
 	// stackFilterKeyForG 过滤 G 模块路径堆栈。
-	stackFilterKeyForG = "github.com/camry/g/"
+	stackFilterKeyForG = "github.com/jessie-gui/x/"
 
 	// separatorSpace 空间分隔符。
 	separatorSpace = ", "
