@@ -2,7 +2,8 @@ package xudp
 
 import (
 	"net"
-	"x/xerror/xerror"
+
+	"github.com/jessie-gui/x/xerror/xerror"
 )
 
 // NewNetConn 创建并返回具有指定地址的 *net.UDPConn。

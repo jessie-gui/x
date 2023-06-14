@@ -3,7 +3,7 @@ package xcron
 import (
 	"time"
 
-	"x/xlog"
+	"github.com/jessie-gui/x/xlog"
 )
 
 // Option 表示对 Cron 的默认行为的修改。

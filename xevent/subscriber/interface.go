@@ -2,8 +2,9 @@ package subscriber
 
 import (
 	"context"
-	"x/xevent/consumer"
-	"x/xevent/event"
+
+	"github.com/jessie-gui/x/xevent/consumer"
+	"github.com/jessie-gui/x/xevent/event"
 )
 
 // Subject /**

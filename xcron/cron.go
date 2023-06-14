@@ -5,7 +5,8 @@ import (
 	"sort"
 	"sync"
 	"time"
-	"x/xlog"
+
+	"github.com/jessie-gui/x/xlog"
 )
 
 // Cron 跟踪任意数量的条目，调用调度指定的关联函数。

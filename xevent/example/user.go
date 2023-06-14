@@ -1,10 +1,10 @@
 package example
 
 import (
+	"github.com/jessie-gui/x/xevent/event"
+	"github.com/jessie-gui/x/xevent/event/events"
+	"github.com/jessie-gui/x/xlog"
 	"golang.org/x/net/context"
-	"x/xevent/event"
-	"x/xevent/event/events"
-	"x/xlog"
 )
 
 /**

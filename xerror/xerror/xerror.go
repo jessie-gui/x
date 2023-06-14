@@ -1,7 +1,7 @@
 package xerror
 
 import (
-	"github.com/camry/g/gerrors/gcode"
+	"github.com/jessie-gui/x/xerror/xcode"
 )
 
 // IIs Is 接口。
@@ -19,7 +19,7 @@ type IEqual interface {
 // ICode Code 接口。
 type ICode interface {
 	Error() string
-	Code() gcode.Code
+	Code() xcode.Code
 }
 
 // IStack Stack 接口。

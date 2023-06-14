@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"testing"
 	"time"
-	"x/xerror/xerror"
-	"x/xnet/xudp"
 
+	"github.com/jessie-gui/x/xerror/xerror"
+	"github.com/jessie-gui/x/xnet/xudp"
 	"github.com/stretchr/testify/assert"
 )
 

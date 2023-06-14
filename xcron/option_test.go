@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"x/xlog"
+	"github.com/jessie-gui/x/xlog"
 )
 
 func TestWithLocation(t *testing.T) {

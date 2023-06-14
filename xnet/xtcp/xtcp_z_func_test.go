@@ -3,8 +3,8 @@ package xtcp_test
 import (
 	"testing"
 
+	"github.com/jessie-gui/x/xnet/xtcp"
 	"github.com/stretchr/testify/assert"
-	"x/xnet/xtcp"
 )
 
 func TestGetFreePort(t *testing.T) {

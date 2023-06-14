@@ -3,9 +3,10 @@ package subscriber
 import (
 	"context"
 	"sync"
-	"x/xevent/consumer"
-	"x/xevent/event"
-	"x/xlog"
+
+	"github.com/jessie-gui/x/xevent/consumer"
+	"github.com/jessie-gui/x/xevent/event"
+	"github.com/jessie-gui/x/xlog"
 )
 
 // Subscriber 事件订阅对象。

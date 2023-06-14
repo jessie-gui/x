@@ -9,7 +9,8 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
-	"x/xlog"
+
+	"github.com/jessie-gui/x/xlog"
 )
 
 const OneSecond = 1*time.Second + 50*time.Millisecond

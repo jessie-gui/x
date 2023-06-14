@@ -3,7 +3,8 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"x/xevent/event"
+
+	"github.com/jessie-gui/x/xevent/event"
 )
 
 // ExecFunc 消费者类型。

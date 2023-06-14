@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	"x/xerror/xerror"
+	"github.com/jessie-gui/x/xerror/xerror"
 )
 
 // Conn 处理 UDP 连接。

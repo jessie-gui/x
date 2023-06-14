@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
-	"x/xlog"
+
+	"github.com/jessie-gui/x/xlog"
 )
 
 // JobWrapper 用一些行为装饰指定的 Job。

@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/camry/g/gerrors/gcode"
+	"github.com/jessie-gui/x/xerror/xcode"
 )
 
 // NewCode 用于创建一个自定义错误信息的 error 对象，并包含堆栈信息，并增加错误码对象的输入。
-func NewCode(code gcode.Code, text ...string) error {
+func NewCode(code xcode.Code, text ...string) error {
 	return &Error{
 		stack: callers(),
 		text:  strings.Join(text, separatorSpace),
@@ -17,7 +17,7 @@ func NewCode(code gcode.Code, text ...string) error {
 }
 
 // NewCodef 用于创建一个自定义错误信息的 error 对象，并包含堆栈信息，并增加错误码对象的输入。
-func NewCodef(code gcode.Code, format string, args ...any) error {
+func NewCodef(code xcode.Code, format string, args ...any) error {
 	return &Error{
 		stack: callers(),
 		text:  fmt.Sprintf(format, args...),
@@ -26,7 +26,7 @@ func NewCodef(code gcode.Code, format string, args ...any) error {
 }
 
 // NewCodeSkip 用于创建一个自定义错误信息的 error 对象，并包含堆栈信息，并增加错误码对象的输入。并且忽略部分堆栈信息（按照当前调用方法位置往上忽略）。
-func NewCodeSkip(code gcode.Code, skip int, text ...string) error {
+func NewCodeSkip(code xcode.Code, skip int, text ...string) error {
 	return &Error{
 		stack: callers(skip),
 		text:  strings.Join(text, separatorSpace),
@@ -35,7 +35,7 @@ func NewCodeSkip(code gcode.Code, skip int, text ...string) error {
 }
 
 // NewCodeSkipf 用于创建一个自定义错误信息的 error 对象，并包含堆栈信息，并增加错误码对象的输入。并且忽略部分堆栈信息（按照当前调用方法位置往上忽略）。
-func NewCodeSkipf(code gcode.Code, skip int, format string, args ...any) error {
+func NewCodeSkipf(code xcode.Code, skip int, format string, args ...any) error {
 	return &Error{
 		stack: callers(skip),
 		text:  fmt.Sprintf(format, args...),
@@ -44,7 +44,7 @@ func NewCodeSkipf(code gcode.Code, skip int, format string, args ...any) error {
 }
 
 // WrapCode 用 error 和文本包裹错误。
-func WrapCode(code gcode.Code, err error, text ...string) error {
+func WrapCode(code xcode.Code, err error, text ...string) error {
 	if err == nil {
 		return nil
 	}
@@ -57,7 +57,7 @@ func WrapCode(code gcode.Code, err error, text ...string) error {
 }
 
 // WrapCodef 用 error 和格式指定符包裹错误。
-func WrapCodef(code gcode.Code, err error, format string, args ...any) error {
+func WrapCodef(code xcode.Code, err error, format string, args ...any) error {
 	if err == nil {
 		return nil
 	}
@@ -70,7 +70,7 @@ func WrapCodef(code gcode.Code, err error, format string, args ...any) error {
 }
 
 // WrapCodeSkip 用 error 和文本包裹错误，并且忽略部分堆栈信息（按照当前调用方法位置往上忽略）。
-func WrapCodeSkip(code gcode.Code, skip int, err error, text ...string) error {
+func WrapCodeSkip(code xcode.Code, skip int, err error, text ...string) error {
 	if err == nil {
 		return nil
 	}
@@ -83,7 +83,7 @@ func WrapCodeSkip(code gcode.Code, skip int, err error, text ...string) error {
 }
 
 // WrapCodeSkipf 用 error 和格式指定符包裹错误，并且忽略部分堆栈信息（按照当前调用方法位置往上忽略）。
-func WrapCodeSkipf(code gcode.Code, skip int, err error, format string, args ...any) error {
+func WrapCodeSkipf(code xcode.Code, skip int, err error, format string, args ...any) error {
 	if err == nil {
 		return nil
 	}
@@ -96,9 +96,9 @@ func WrapCodeSkipf(code gcode.Code, skip int, err error, format string, args ...
 }
 
 // Code 获取 error 中的错误码接口。
-func Code(err error) gcode.Code {
+func Code(err error) xcode.Code {
 	if err == nil {
-		return gcode.CodeNil
+		return xcode.CodeNil
 	}
 	if e, ok := err.(ICode); ok {
 		return e.Code()
@@ -106,11 +106,11 @@ func Code(err error) gcode.Code {
 	if e, ok := err.(IUnwrap); ok {
 		return Code(e.Unwrap())
 	}
-	return gcode.CodeNil
+	return xcode.CodeNil
 }
 
 // HasCode 检查并报告 `err` 在其链接错误中是否具有 `code`。
-func HasCode(err error, code gcode.Code) bool {
+func HasCode(err error, code xcode.Code) bool {
 	if err == nil {
 		return false
 	}

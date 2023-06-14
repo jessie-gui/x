@@ -19,7 +19,7 @@ type Error struct {
 
 const (
 	// stackFilterKeyLocal 过滤当前错误模块路径的键。
-	stackFilterKeyLocal = "/gerrors/gerror/gerror"
+	stackFilterKeyLocal = "/xerror/xerror/xerror"
 )
 
 var (

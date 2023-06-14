@@ -1,8 +1,8 @@
 package xutil_test
 
 import (
+	"github.com/jessie-gui/x/xutil"
 	"testing"
-	"x/xutil"
 
 	"github.com/stretchr/testify/assert"
 )

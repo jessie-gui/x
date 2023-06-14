@@ -4,14 +4,14 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/camry/g/gerrors/gcode"
-	"github.com/camry/g/gerrors/gerror"
+	"github.com/jessie-gui/x/xerror/xcode"
+	"github.com/jessie-gui/x/xerror/xerror"
 )
 
 func ExampleNewCode() {
-	err := gerror.NewCode(gcode.New(10000, "", nil), "My Error")
+	err := xerror.NewCode(xcode.New(10000, "", nil), "My Error")
 	fmt.Println(err.Error())
-	fmt.Println(gerror.Code(err))
+	fmt.Println(xerror.Code(err))
 
 	// Output:
 	// My Error
@@ -19,9 +19,9 @@ func ExampleNewCode() {
 }
 
 func ExampleNewCodef() {
-	err := gerror.NewCodef(gcode.New(10000, "", nil), "It's %s", "My Error")
+	err := xerror.NewCodef(xcode.New(10000, "", nil), "It's %s", "My Error")
 	fmt.Println(err.Error())
-	fmt.Println(gerror.Code(err).Code())
+	fmt.Println(xerror.Code(err).Code())
 
 	// Output:
 	// It's My Error
@@ -30,9 +30,9 @@ func ExampleNewCodef() {
 
 func ExampleWrapCode() {
 	err1 := errors.New("permission denied")
-	err2 := gerror.WrapCode(gcode.New(10000, "", nil), err1, "Custom Error")
+	err2 := xerror.WrapCode(xcode.New(10000, "", nil), err1, "Custom Error")
 	fmt.Println(err2.Error())
-	fmt.Println(gerror.Code(err2).Code())
+	fmt.Println(xerror.Code(err2).Code())
 
 	// Output:
 	// Custom Error: permission denied
@@ -41,9 +41,9 @@ func ExampleWrapCode() {
 
 func ExampleWrapCodef() {
 	err1 := errors.New("permission denied")
-	err2 := gerror.WrapCodef(gcode.New(10000, "", nil), err1, "It's %s", "Custom Error")
+	err2 := xerror.WrapCodef(xcode.New(10000, "", nil), err1, "It's %s", "Custom Error")
 	fmt.Println(err2.Error())
-	fmt.Println(gerror.Code(err2).Code())
+	fmt.Println(xerror.Code(err2).Code())
 
 	// Output:
 	// It's Custom Error: permission denied
@@ -52,10 +52,10 @@ func ExampleWrapCodef() {
 
 func ExampleEqual() {
 	err1 := errors.New("permission denied")
-	err2 := gerror.New("permission denied")
-	err3 := gerror.NewCode(gcode.CodeNotAuthorized, "permission denied")
-	fmt.Println(gerror.Equal(err1, err2))
-	fmt.Println(gerror.Equal(err2, err3))
+	err2 := xerror.New("permission denied")
+	err3 := xerror.NewCode(xcode.CodeNotAuthorized, "permission denied")
+	fmt.Println(xerror.Equal(err1, err2))
+	fmt.Println(xerror.Equal(err2, err3))
 
 	// Output:
 	// true
@@ -64,11 +64,11 @@ func ExampleEqual() {
 
 func ExampleIs() {
 	err1 := errors.New("permission denied")
-	err2 := gerror.Wrap(err1, "operation failed")
-	fmt.Println(gerror.Is(err1, err1))
-	fmt.Println(gerror.Is(err2, err2))
-	fmt.Println(gerror.Is(err2, err1))
-	fmt.Println(gerror.Is(err1, err2))
+	err2 := xerror.Wrap(err1, "operation failed")
+	fmt.Println(xerror.Is(err1, err1))
+	fmt.Println(xerror.Is(err2, err2))
+	fmt.Println(xerror.Is(err2, err1))
+	fmt.Println(xerror.Is(err1, err2))
 
 	// Output:
 	// false

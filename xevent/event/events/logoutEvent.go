@@ -1,8 +1,9 @@
 package events
 
 import (
-	"dy/event/event"
 	"time"
+
+	"github.com/jessie-gui/x/xevent/event"
 )
 
 // LogoutEvent /**

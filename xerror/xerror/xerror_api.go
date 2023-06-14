@@ -3,7 +3,7 @@ package xerror
 import (
 	"fmt"
 
-	"github.com/camry/g/gerrors/gcode"
+	"github.com/jessie-gui/x/xerror/xcode"
 )
 
 // New 用于创建一个自定义文本错误信息的 error 对象，并包含堆栈信息。
@@ -11,7 +11,7 @@ func New(text string) error {
 	return &Error{
 		stack: callers(),
 		text:  text,
-		code:  gcode.CodeNil,
+		code:  xcode.CodeNil,
 	}
 }
 
@@ -20,7 +20,7 @@ func Newf(format string, args ...any) error {
 	return &Error{
 		stack: callers(),
 		text:  fmt.Sprintf(format, args...),
-		code:  gcode.CodeNil,
+		code:  xcode.CodeNil,
 	}
 }
 
@@ -30,7 +30,7 @@ func NewSkip(skip int, text string) error {
 	return &Error{
 		stack: callers(skip),
 		text:  text,
-		code:  gcode.CodeNil,
+		code:  xcode.CodeNil,
 	}
 }
 
@@ -40,7 +40,7 @@ func NewSkipf(skip int, format string, args ...any) error {
 	return &Error{
 		stack: callers(skip),
 		text:  fmt.Sprintf(format, args...),
-		code:  gcode.CodeNil,
+		code:  xcode.CodeNil,
 	}
 }
 

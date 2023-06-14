@@ -3,8 +3,8 @@ package xcode_test
 import (
 	"testing"
 
+	"github.com/jessie-gui/x/xerror/xcode"
 	"github.com/stretchr/testify/assert"
-	"x/xerror/xcode"
 )
 
 func TestNew(t *testing.T) {

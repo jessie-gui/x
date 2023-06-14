@@ -5,7 +5,8 @@ import (
 	"sync"
 	"testing"
 	"time"
-	"x/xlog"
+
+	"github.com/jessie-gui/x/xlog"
 )
 
 func appendingJob(slice *[]int, value int) Job {

@@ -2,7 +2,7 @@ package consumer
 
 import (
 	"context"
-	"x/xevent/event"
+	"github.com/jessie-gui/x/xevent/event"
 )
 
 // Consumer 消费者接口

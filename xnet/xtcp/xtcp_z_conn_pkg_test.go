@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 	"time"
-	"x/xnet/xtcp"
-
+	
+	"github.com/jessie-gui/x/xnet/xtcp"
 	"github.com/stretchr/testify/assert"
 )
 

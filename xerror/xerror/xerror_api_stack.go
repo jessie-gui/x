@@ -64,7 +64,7 @@ func Unwrap(err error) error {
 	return nil
 }
 
-// HasStack 判断错误是否带堆栈，实现 `gerror.IStack` 接口。
+// HasStack 判断错误是否带堆栈，实现 `xerror.IStack` 接口。
 func HasStack(err error) bool {
 	_, ok := err.(IStack)
 	return ok
@@ -92,7 +92,7 @@ func Is(err, target error) bool {
 	return false
 }
 
-// HasError 包含判断，`gerror.Is` 的别名。
+// HasError 包含判断，`xerror.Is` 的别名。
 func HasError(err, target error) bool {
 	return Is(err, target)
 }

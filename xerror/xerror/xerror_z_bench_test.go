@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"x/xerror/xcode"
-	"x/xerror/xerror"
+	"github.com/jessie-gui/x/xerror/xcode"
+	"github.com/jessie-gui/x/xerror/xerror"
 )
 
 var (

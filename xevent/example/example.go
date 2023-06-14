@@ -3,10 +3,11 @@ package example
 import (
 	"context"
 	"time"
-	"x/xevent/consumer"
-	"x/xevent/event"
-	"x/xevent/event/events"
-	"x/xevent/subscriber"
+
+	"github.com/jessie-gui/x/xevent/consumer"
+	"github.com/jessie-gui/x/xevent/event"
+	"github.com/jessie-gui/x/xevent/event/events"
+	"github.com/jessie-gui/x/xevent/subscriber"
 )
 
 /**

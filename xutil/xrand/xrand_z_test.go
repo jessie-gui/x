@@ -2,13 +2,13 @@ package xrand_test
 
 import (
 	"testing"
-	"x/xutil"
-	"x/xutil/xrand"
 
+	"github.com/jessie-gui/x/xutil"
+	"github.com/jessie-gui/x/xutil/xrand"
 	"github.com/stretchr/testify/assert"
 )
 
-func Testxrand_RangeInt(t *testing.T) {
+func TestXrand_RangeInt(t *testing.T) {
 	r := xrand.NewRand(100000000)
 	v1 := []int{1, 3, 3, 4, 9, 6, 2, 8, 9, 6}
 	for i := 0; i < 10; i++ {
@@ -20,7 +20,7 @@ func Testxrand_RangeInt(t *testing.T) {
 	}
 }
 
-func Testxrand_Hit(t *testing.T) {
+func TestXrand_Hit(t *testing.T) {
 	r := xrand.NewRand(100000000)
 	for i := 0; i < 100; i++ {
 		assert.True(t, r.Hit(100, 100))
@@ -42,7 +42,7 @@ func Testxrand_Hit(t *testing.T) {
 	}
 }
 
-func Testxrand_HitProb(t *testing.T) {
+func TestXrand_HitProb(t *testing.T) {
 	r := xrand.NewRand(100000000)
 	for i := 0; i < 100; i++ {
 		assert.True(t, r.HitProb(1))
