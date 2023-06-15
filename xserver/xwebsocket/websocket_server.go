@@ -53,6 +53,17 @@ func (c *WebSocketClient) WriteMessage(message []byte) error {
 	return nil
 }
 
+// WriteMessageWithType 写入消息到连接中。
+func (c *WebSocketClient) WriteMessageWithType(msgType int, message []byte) error {
+	err := c.conn.WriteMessage(msgType, message)
+	if err != nil {
+		xlog.Error("Error writing messageWithType:", err)
+		return err
+	}
+
+	return nil
+}
+
 // Close 关闭连接。
 func (c *WebSocketClient) Close() error {
 	err := c.conn.Close()
