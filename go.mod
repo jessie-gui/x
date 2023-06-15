@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/camry/g v1.2.8
+	github.com/gorilla/websocket v1.5.0
 	github.com/stretchr/testify v1.8.1
 	golang.org/x/net v0.11.0
 	google.golang.org/grpc v1.55.0
