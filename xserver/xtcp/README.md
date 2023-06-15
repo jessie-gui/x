@@ -1,3 +1,3 @@
 # TCP
 
-xserver/xtcp 中基于 G 包 TCP 组件实现了 Server，用以注册 tcp 到 dove.Server() 中。
+xserver/xtcp 中基于 xnet 包 TCP 组件实现了 Server。

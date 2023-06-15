@@ -4,8 +4,8 @@ import (
 	"context"
 	"crypto/tls"
 
-	"github.com/camry/g/glog"
-	"github.com/camry/g/gnet/gtcp"
+	"github.com/jessie-gui/x/xlog"
+	"github.com/jessie-gui/x/xnet/xtcp"
 )
 
 // ServerOption 定义一个 TCP 服务选项类型。
@@ -22,16 +22,16 @@ func TLSConfig(c *tls.Config) ServerOption {
 }
 
 // Handler 配置处理器。
-func Handler(handler func(conn *gtcp.Conn)) ServerOption {
+func Handler(handler func(conn *xtcp.Conn)) ServerOption {
 	return func(s *Server) { s.handler = handler }
 }
 
 // Server 定义 TCP 服务包装器。
 type Server struct {
-	*gtcp.Server
+	*xtcp.Server
 
 	address   string           // 服务器监听地址。
-	handler   func(*gtcp.Conn) // 连接处理器。
+	handler   func(*xtcp.Conn) // 连接处理器。
 	tlsConfig *tls.Config      // TLS 配置。
 }
 
@@ -39,27 +39,27 @@ type Server struct {
 func NewServer(opts ...ServerOption) *Server {
 	srv := &Server{
 		address: ":0",
-		handler: func(conn *gtcp.Conn) {},
+		handler: func(conn *xtcp.Conn) {},
 	}
 	for _, opt := range opts {
 		opt(srv)
 	}
 	if srv.tlsConfig != nil {
-		srv.Server = gtcp.NewServerTLS(srv.address, srv.tlsConfig, srv.handler)
+		srv.Server = xtcp.NewServerTLS(srv.address, srv.tlsConfig, srv.handler)
 	} else {
-		srv.Server = gtcp.NewServer(srv.address, srv.handler)
+		srv.Server = xtcp.NewServer(srv.address, srv.handler)
 	}
 	return srv
 }
 
 // Start 启动 TCP 服务器。
 func (s *Server) Start(ctx context.Context) (err error) {
-	glog.Infof("[TCP] server listening on %s", s.GetListenedAddress())
+	xlog.Infof("[TCP] server listening on %s", s.GetListenedAddress())
 	return s.Run(ctx)
 }
 
 // Stop 停止 TCP 服务器。
 func (s *Server) Stop(ctx context.Context) error {
-	glog.Info("[TCP] server stopping")
+	xlog.Info("[TCP] server stopping")
 	return s.Close(ctx)
 }

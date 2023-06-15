@@ -5,8 +5,8 @@ import (
 	"crypto/tls"
 	"net"
 	"time"
-	"x/xlog"
 
+	"github.com/jessie-gui/x/xlog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/health"
@@ -75,10 +75,10 @@ func NewServer(opts ...ServerOption) *Server {
 	}
 
 	unaryInterceptors := []grpc.UnaryServerInterceptor{
-		nil,
+		srv.defaultUnaryServerInterceptor(),
 	}
 	streamInterceptors := []grpc.StreamServerInterceptor{
-		nil,
+		srv.defaultStreamServerInterceptor(),
 	}
 
 	if len(srv.unaryInterceptors) > 0 {

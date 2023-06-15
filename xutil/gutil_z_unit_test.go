@@ -1,9 +1,9 @@
 package xutil_test
 
 import (
-	"github.com/jessie-gui/x/xutil"
 	"testing"
 
+	"github.com/jessie-gui/x/xutil"
 	"github.com/stretchr/testify/assert"
 )
 
