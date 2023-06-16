@@ -33,17 +33,18 @@ func NewESClient(addresses []string) (*ESClient, error) {
 }
 
 // IndexDocument 创建一个文档索引。
-func (c *ESClient) IndexDocument(indexName string, docID string, document map[string]interface{}) (*esapi.Response, error) {
+func (c *ESClient) IndexDocument(indexName string, docID string, documentType string, document map[string]interface{}) (*esapi.Response, error) {
 	body, err := json.Marshal(document)
 	if err != nil {
 		return nil, err
 	}
 
 	req := esapi.IndexRequest{
-		Index:      indexName,
-		DocumentID: docID,
-		Body:       strings.NewReader(string(body)),
-		Refresh:    "true",
+		Index:        indexName,
+		DocumentID:   docID,
+		DocumentType: documentType, // v8后取消了文档类型，默认为_doc
+		Body:         strings.NewReader(string(body)),
+		Refresh:      "true",
 	}
 
 	return req.Do(context.Background(), c.client)
