@@ -4,6 +4,8 @@ go 1.18
 
 require (
 	github.com/camry/g v1.2.8
+	github.com/elastic/go-elasticsearch/v7 v7.17.10
+	github.com/elastic/go-elasticsearch/v8 v8.8.1
 	github.com/gorilla/websocket v1.5.0
 	github.com/stretchr/testify v1.8.1
 	golang.org/x/net v0.11.0
