@@ -42,6 +42,17 @@ func (c *WebSocketClient) ReadMessage() ([]byte, error) {
 	return message, nil
 }
 
+// ReadMessageWithType 从连接中读取带有类型的消息。
+func (c *WebSocketClient) ReadMessageWithType() (int, []byte, error) {
+	ty, message, err := c.conn.ReadMessage()
+	if err != nil {
+		xlog.Error("Error reading messageWithType:", err)
+		return 0, nil, err
+	}
+
+	return ty, message, nil
+}
+
 // WriteMessage 写入消息到连接中。
 func (c *WebSocketClient) WriteMessage(message []byte) error {
 	err := c.conn.WriteMessage(websocket.TextMessage, message)
@@ -53,7 +64,7 @@ func (c *WebSocketClient) WriteMessage(message []byte) error {
 	return nil
 }
 
-// WriteMessageWithType 写入消息到连接中。
+// WriteMessageWithType 写入带有类型的消息到连接中。
 func (c *WebSocketClient) WriteMessageWithType(msgType int, message []byte) error {
 	err := c.conn.WriteMessage(msgType, message)
 	if err != nil {
