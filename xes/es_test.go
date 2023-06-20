@@ -107,3 +107,48 @@ func TestScrollQuery(t *testing.T) {
 
 	t.Log("查询结果:", string(searchRes))
 }
+
+func TestBulkDocuments(t *testing.T) {
+	esClient, err := NewESClient([]string{"http://localhost:9200"})
+	if err != nil {
+		t.Fatal("无法创建 Elasticsearch 客户端:", err)
+	}
+
+	query := []map[string]interface{}{
+		{
+			"index": map[string]interface{}{
+				"_id": 1,
+			},
+			"price":     10,
+			"productID": "XHDK-A-1293-#fJ3",
+		},
+		{
+			"index": map[string]interface{}{
+				"_id": 2,
+			},
+			"price":     20,
+			"productID": "KDKE-B-9947-#kL5",
+		},
+		{
+			"index": map[string]interface{}{
+				"_id": 3,
+			},
+			"price":     30,
+			"productID": "JODL-X-1937-#pV7",
+		},
+		{
+			"index": map[string]interface{}{
+				"_id": 4,
+			},
+			"price":     30,
+			"productID": "QQPX-R-3956-#aD8",
+		},
+	}
+
+	res, err := esClient.BulkDocuments("my_store", query)
+	if err != nil {
+		t.Fatal("索引文档失败:", err)
+	}
+
+	t.Log("插入结果:", string(res))
+}

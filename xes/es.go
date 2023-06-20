@@ -156,6 +156,44 @@ func (c *ESClient) ScrollQuery(indexName string, query map[string]interface{}, s
 	return json.Marshal(documents)
 }
 
+// BulkDocuments 批量操作文档。
+func (c *ESClient) BulkDocuments(indexName string, query []map[string]interface{}) ([]byte, error) {
+	reqBody := ""
+	for _, q := range query {
+		rb, err := json.Marshal(q)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		reqBody += string(rb) + "\n"
+	}
+
+	// 创建 _bulk 请求。
+	req := esapi.BulkRequest{
+		Index: indexName,
+		Body:  strings.NewReader(reqBody),
+	}
+
+	// 执行 _bulk 请求。
+	res, err := req.Do(context.Background(), c.client)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+
+	if res.IsError() {
+		log.Fatalf("批量操作失败：%s", res.String())
+	}
+
+	// 解析响应结果。
+	var result map[string]interface{}
+	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
+		log.Fatal(err)
+	}
+
+	return json.Marshal(result)
+}
+
 // encodeBody 编码请求体。
 func (c *ESClient) encodeBody(query map[string]interface{}) *strings.Reader {
 	body, err := json.Marshal(query)
