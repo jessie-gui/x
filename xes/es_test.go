@@ -2,6 +2,7 @@ package xes
 
 import (
 	"testing"
+	"time"
 )
 
 func TestIndexDocument(t *testing.T) {
@@ -79,4 +80,30 @@ func TestInsertDocument(t *testing.T) {
 	if err != nil {
 		t.Fatal("索引文档失败:", err)
 	}
+}
+
+func TestScrollQuery(t *testing.T) {
+	esClient, err := NewESClient([]string{"http://localhost:9200"})
+	if err != nil {
+		t.Fatal("无法创建 Elasticsearch 客户端:", err)
+	}
+
+	query := map[string]interface{}{
+		"size": 1000,
+		"sort": []map[string]interface{}{
+			{
+				"_doc": "asc",
+			},
+		},
+		"query": map[string]interface{}{
+			"match_all": map[string]interface{}{},
+		},
+	}
+
+	searchRes, err := esClient.ScrollQuery("employee", query, 1*time.Minute)
+	if err != nil {
+		t.Fatal("游标查询失败:", err)
+	}
+
+	t.Log("查询结果:", string(searchRes))
 }
